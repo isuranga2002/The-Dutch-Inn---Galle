@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Dutch Inn — Galle · A Boutique Heritage Retreat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Italiana&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  :root {
+    --ink:       #1A2326;
+    --teal:      #0E3A45;
+    --teal-2:    #145260;
+    --terracotta:#C46A4A;
+    --brass:     #B8924A;
+    --cream:     #F5EFE3;
+    --cream-2:   #EDE3D1;
+    --paper:     #FAF6EE;
+    --line:      #d8cdb6;
+    --muted:     #6B6259;
+
+    --serif: "Cormorant Garamond", "Times New Roman", serif;
+    --display: "Italiana", "Cormorant Garamond", serif;
+    --sans: "Manrope", system-ui, sans-serif;
+
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .container{max-width:1280px;margin:0 auto;padding:0 32px}
+
+  /* ============== NAV ============== */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+    transition:all .5s var(--ease);
+    color:#fff;
+  }
+  .nav.scrolled{
+    background:rgba(250,246,238,.96);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    padding:12px 32px;
+    color:var(--ink);
+  }
+  .nav .brand{
+    display:flex;align-items:center;gap:14px;
+    font-family:var(--display);
+    font-size:22px;letter-spacing:.04em;
+  }
+  .nav .brand .crest{
+    width:42px;height:42px;
+    border:1.2px solid currentColor;
+    border-radius:50%;
+    display:grid;place-items:center;
+    font-family:var(--display);
+    font-size:14px;
+    transition:transform .8s var(--ease);
+  }
+  .nav .brand:hover .crest{transform:rotate(360deg)}
+  .nav .brand small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.4em;opacity:.7;margin-top:2px}
+  .nav .links{display:flex;gap:34px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+  .nav .links a{position:relative;padding:6px 0;opacity:.9}
+  .nav .links a::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:currentColor;transform:scaleX(0);transform-origin:left;
+    transition:transform .4s var(--ease);
+  }
+  .nav .links a:hover{opacity:1}
+  .nav .links a:hover::after{transform:scaleX(1)}
+  .nav .book{
+    background:var(--terracotta);color:#fff;
+    padding:11px 22px;border-radius:999px;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+    transition:all .3s var(--ease);
+    border:1px solid var(--terracotta);
+  }
+  .nav .book:hover{background:transparent;color:var(--terracotta)}
+  .nav.scrolled .book:hover{color:var(--terracotta)}
+
+  /* ============== HERO ============== */
+  .hero{
+    position:relative;height:100vh;min-height:720px;
+    overflow:hidden;color:#fff;
+  }
+  .hero-slides{position:absolute;inset:0}
+  .hero-slide{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1.8s var(--ease);
+    transform:scale(1.08);
+    animation:slow-zoom 14s linear infinite;
+  }
+  .hero-slide.active{opacity:1}
+  @keyframes slow-zoom{
+    0%{transform:scale(1.0)}
+    100%{transform:scale(1.12)}
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:2;
+    background:
+      linear-gradient(180deg, rgba(10,20,25,.55) 0%, rgba(10,20,25,.15) 35%, rgba(10,20,25,.2) 60%, rgba(10,20,25,.85) 100%);
+  }
+  .hero-content{
+    position:relative;z-index:3;
+    height:100%;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:0 56px 80px;
+    max-width:1280px;margin:0 auto;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:12px;letter-spacing:.4em;text-transform:uppercase;
+    opacity:.85;margin-bottom:24px;
+    animation:fade-up 1.2s var(--ease) .4s both;
+  }
+  .hero-eyebrow .dash{width:42px;height:1px;background:#fff;opacity:.7}
+  .hero h1{
+    font-family:var(--display);
+    font-size:clamp(56px, 9vw, 138px);
+    font-weight:400;
+    line-height:.95;
+    letter-spacing:-.01em;
+    max-width:1100px;
+    animation:fade-up 1.4s var(--ease) .6s both;
+  }
+  .hero h1 .italic{font-family:var(--serif);font-style:italic;font-weight:300;color:#f4d8b0}
+  .hero-sub{
+    margin-top:30px;max-width:560px;
+    font-size:17px;line-height:1.65;opacity:.92;
+    animation:fade-up 1.2s var(--ease) .9s both;
+  }
+  .hero-meta{
+    margin-top:44px;display:flex;align-items:center;gap:36px;flex-wrap:wrap;
+    animation:fade-up 1.2s var(--ease) 1.1s both;
+  }
+  .hero-meta .pill{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;border:1px solid rgba(255,255,255,.4);
+    border-radius:999px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+    backdrop-filter:blur(6px);background:rgba(255,255,255,.06);
+  }
+  .hero-meta .pill svg{width:16px;height:16px}
+  .hero-meta .stars{display:flex;gap:2px;color:var(--brass)}
+
+  .hero-actions{
+    display:flex;align-items:center;gap:16px;margin-top:32px;flex-wrap:wrap;
+  }
+  .hero-btn{
+    display:inline-flex;align-items:center;
+    padding:14px 30px;border-radius:999px;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+    transition:all .3s var(--ease);cursor:pointer;
+  }
+  .hero-btn-primary{
+    background:var(--terracotta);color:#fff;border:1px solid var(--terracotta);
+  }
+  .hero-btn-primary:hover{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+  .hero-btn-ghost{
+    background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);
+  }
+  .hero-btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+
+  .hero-bottom{
+    position:absolute;left:0;right:0;bottom:0;z-index:3;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    padding:0 56px 32px;max-width:1280px;margin:0 auto;
+    pointer-events:none;
+  }
+  .scroll-cue{
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    font-size:11px;letter-spacing:.4em;text-transform:uppercase;opacity:.75;
+    pointer-events:auto;
+  }
+  .scroll-cue .line{
+    width:1px;height:60px;background:#fff;opacity:.5;
+    animation:line-pulse 2s var(--ease) infinite;
+    transform-origin:top;
+  }
+  @keyframes line-pulse{
+    0%,100%{transform:scaleY(.3)}
+    50%{transform:scaleY(1)}
+  }
+  .slide-dots{display:flex;gap:10px;pointer-events:auto}
+  .slide-dots button{
+    width:38px;height:2px;background:rgba(255,255,255,.3);border:none;cursor:pointer;
+    transition:background .4s var(--ease);
+  }
+  .slide-dots button.active{background:#fff}
+
+  @keyframes fade-up{
+    from{opacity:0;transform:translateY(40px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* ============== BOOKING BAR ============== */
+  .book-bar{
+    position:relative;z-index:5;
+    margin:-44px auto 0;
+    max-width:1180px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    box-shadow:0 30px 60px -30px rgba(14,58,69,.25);
+    display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;
+    align-items:center;
+    padding:8px;
+    border-radius:6px;
+  }
+  .book-field{
+    padding:18px 22px;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;gap:6px;
+    cursor:pointer;transition:background .25s var(--ease);
+  }
+  .book-field:hover{background:var(--cream)}
+  .book-field:last-of-type{border-right:none}
+  .book-field label{
+    font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;
+  }
+  .book-field .val{
+    font-family:var(--serif);font-size:19px;color:var(--ink);
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .book-field .val .day{font-size:13px;color:var(--muted);font-family:var(--sans)}
+  .book-field input, .book-field select{
+    border:none;background:transparent;outline:none;
+    font-family:var(--serif);font-size:19px;color:var(--ink);width:100%;
+    -webkit-appearance:none;appearance:none;
+  }
+  .book-bar .submit{
+    height:100%;padding:0 36px;background:var(--teal);color:#fff;
+    border:none;cursor:pointer;border-radius:4px;margin:0 4px;
+    font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+    transition:background .3s var(--ease);
+    min-height:84px;
+  }
+  .book-bar .submit:hover{background:var(--terracotta)}
+
+  /* ============== WELCOME ============== */
+  .welcome{padding:140px 0 100px;position:relative}
+  .welcome .grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:11px;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--terracotta);font-weight:600;margin-bottom:24px;
+  }
+  .eyebrow .dash{width:32px;height:1px;background:currentColor;opacity:.6}
+  .welcome h2{
+    font-family:var(--display);
+    font-size:clamp(40px,5vw,68px);
+    font-weight:400;line-height:1.05;
+    color:var(--teal);letter-spacing:-.005em;
+  }
+  .welcome h2 .italic{font-family:var(--serif);font-style:italic;color:var(--terracotta)}
+  .welcome p{
+    margin-top:28px;font-size:17px;line-height:1.75;color:#3a3530;
+    max-width:520px;
+  }
+  .welcome p + p{margin-top:18px}
+  .welcome .stats{
+    margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    max-width:520px;
+  }
+  .stat{border-top:1px solid var(--line);padding-top:18px}
+  .stat .num{font-family:var(--display);font-size:42px;color:var(--teal);line-height:1}
+  .stat .lbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+  .welcome .img-stack{
+    position:relative;height:600px;
+  }
+  .welcome .img-stack .main{
+    position:absolute;top:0;right:0;width:78%;height:78%;
+    overflow:hidden;
+  }
+  .welcome .img-stack .acc{
+    position:absolute;bottom:0;left:0;width:55%;height:48%;
+    overflow:hidden;
+    border:8px solid var(--paper);
+  }
+  .welcome .img-stack .badge{
+    position:absolute;top:50%;left:50%;
+    width:140px;height:140px;border-radius:50%;
+    background:var(--terracotta);color:#fff;
+    display:grid;place-items:center;text-align:center;
+    transform:translate(-50%,-50%) rotate(-8deg);
+    z-index:2;
+    box-shadow:0 20px 40px -10px rgba(196,106,74,.5);
+    animation:rotate-badge 28s linear infinite;
+  }
+  .welcome .img-stack .badge svg{
+    position:absolute;inset:0;width:100%;height:100%;
+  }
+  @keyframes rotate-badge{
+    from{transform:translate(-50%,-50%) rotate(0)}
+    to{transform:translate(-50%,-50%) rotate(360deg)}
+  }
+  .welcome .img-stack .badge .inner{
+    font-family:var(--display);font-size:18px;line-height:1.2;
+    transform:rotate(8deg);
+  }
+
+  /* ============== MARQUEE BAND ============== */
+  .marquee-band{
+    background:var(--teal);color:var(--cream);
+    padding:38px 0;overflow:hidden;
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .marquee{display:flex;gap:60px;animation:scroll-left 36s linear infinite;white-space:nowrap}
+  .marquee span{
+    font-family:var(--display);font-size:46px;letter-spacing:.04em;
+    display:inline-flex;align-items:center;gap:60px;
+  }
+  .marquee span::after{content:"✦";color:var(--brass);font-size:24px}
+  @keyframes scroll-left{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+
+  /* ============== ROOMS ============== */
+  .rooms{padding:130px 0 100px;background:var(--cream)}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:64px;gap:40px;flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-family:var(--display);font-size:clamp(40px,5vw,72px);
+    color:var(--teal);font-weight:400;line-height:1;letter-spacing:-.005em;
+  }
+  .section-head h2 .italic{font-family:var(--serif);font-style:italic;color:var(--terracotta)}
+  .section-head .right{max-width:380px;color:var(--muted);font-size:15px;line-height:1.7}
+  .room-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+  }
+  .room{
+    background:var(--paper);
+    overflow:hidden;
+    transition:transform .6s var(--ease),box-shadow .6s var(--ease);
+    cursor:pointer;
+    position:relative;
+  }
+  .room:hover{transform:translateY(-8px);box-shadow:0 40px 80px -30px rgba(14,58,69,.3)}
+  .room .img{height:340px;overflow:hidden;position:relative}
+  .room .img > *{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .room:hover .img > *{transform:scale(1.08)}
+  .room .img .tag{
+    position:absolute;top:18px;left:18px;
+    background:rgba(255,255,255,.95);color:var(--teal);
+    padding:6px 14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+  }
+  .room .body{padding:28px 26px 30px}
+  .room h3{
+    font-family:var(--display);font-size:28px;color:var(--teal);
+    font-weight:400;letter-spacing:.005em;
+  }
+  .room .feat{
+    margin-top:14px;display:flex;flex-wrap:wrap;gap:14px;
+    font-size:12px;color:var(--muted);letter-spacing:.04em;
+  }
+  .room .feat span{display:flex;align-items:center;gap:6px}
+  .room .price-row{
+    margin-top:22px;padding-top:18px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .room .price .from{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .room .price .amt{font-family:var(--display);font-size:30px;color:var(--ink);line-height:1}
+  .room .price .amt small{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-left:6px}
+  .room .arrow{
+    width:46px;height:46px;border-radius:50%;
+    border:1px solid var(--line);display:grid;place-items:center;
+    transition:all .3s var(--ease);
+  }
+  .room:hover .arrow{background:var(--terracotta);border-color:var(--terracotta);color:#fff}
+
+  /* ============== AMENITIES ============== */
+  .amenities{padding:130px 0;position:relative}
+  .amenity-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    margin-top:60px;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  .amenity{
+    padding:38px 30px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    display:flex;flex-direction:column;gap:14px;
+    transition:background .4s var(--ease);
+    position:relative;
+  }
+  .amenity:hover{background:var(--cream)}
+  .amenity .ico{
+    width:54px;height:54px;color:var(--terracotta);
+    transition:transform .6s var(--ease);
+  }
+  .amenity:hover .ico{transform:rotate(8deg) scale(1.05)}
+  .amenity h4{font-family:var(--serif);font-size:22px;color:var(--teal);font-weight:500}
+  .amenity p{font-size:14px;color:var(--muted);line-height:1.6}
+
+  /* ============== GALLERY MARQUEE ============== */
+  .gallery{padding:120px 0 100px;background:var(--teal);color:#fff;overflow:hidden}
+  .gallery .section-head h2{color:#fff}
+  .gallery .section-head .right{color:rgba(255,255,255,.7)}
+  .gallery .scroller{
+    margin-top:40px;
+    display:flex;gap:24px;
+    animation:scroll-left 50s linear infinite;
+  }
+  .gallery .scroller:hover,.gallery .scroller.paused{animation-play-state:paused}
+  @media (hover:none){
+    .gallery .scroller{-webkit-overflow-scrolling:touch}
+  }
+  .gallery .scroller .item{
+    flex:0 0 auto;
+    width:380px;height:480px;
+    overflow:hidden;
+    position:relative;
+  }
+  .gallery .scroller .item:nth-child(odd){margin-top:50px}
+  .gallery .scroller .item:nth-child(3n){height:520px}
+  .gallery .scroller .item > *{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform 1.5s var(--ease);
+  }
+  .gallery .scroller .item:hover > *{transform:scale(1.08)}
+  .gallery .scroller .item .cap{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:20px;color:#fff;
+    background:linear-gradient(0deg,rgba(0,0,0,.7),transparent);
+    font-family:var(--serif);font-size:18px;font-style:italic;
+    opacity:0;transform:translateY(10px);
+    transition:all .5s var(--ease);
+  }
+  .gallery .scroller .item:hover .cap{opacity:1;transform:translateY(0)}
+
+  /* ============== EXPERIENCE / GALLE ============== */
+  .experience{padding:130px 0;background:var(--paper);position:relative}
+  .experience .grid{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;
+  }
+  .experience h2{
+    font-family:var(--display);font-size:clamp(40px,5vw,68px);
+    color:var(--teal);font-weight:400;line-height:1.05;letter-spacing:-.005em;
+  }
+  .experience h2 .italic{font-family:var(--serif);font-style:italic;color:var(--terracotta)}
+  .experience .lead{
+    margin-top:24px;font-size:17px;line-height:1.75;color:#3a3530;max-width:560px;
+  }
+  .experience .map-stack{
+    position:relative;height:540px;
+  }
+  .experience .map-stack .photo{
+    position:absolute;top:0;left:0;width:75%;height:62%;
+    overflow:hidden;
+  }
+  .experience .map-stack .map{
+    position:absolute;bottom:0;right:0;width:75%;height:55%;
+    overflow:hidden;border:8px solid var(--paper);
+    background:#dbe6e3;
+  }
+  .experience .map iframe{width:100%;height:100%;border:0;filter:saturate(.85) contrast(.95)}
+  .nearby{
+    margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;
+    max-width:560px;
+  }
+  .nearby .item{
+    display:flex;justify-content:space-between;
+    padding:18px 0;border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .nearby .item .name{color:var(--ink);font-family:var(--serif);font-size:18px}
+  .nearby .item .dist{color:var(--muted);font-size:12px;letter-spacing:.1em}
+
+  /* ============== TESTIMONIAL ============== */
+  .voices{padding:140px 0;background:var(--ink);color:#fff;text-align:center;position:relative;overflow:hidden}
+  .voices::before{
+    content:"❝";position:absolute;top:30px;left:50%;transform:translateX(-50%);
+    font-family:var(--display);font-size:280px;color:var(--terracotta);opacity:.15;line-height:1;
+  }
+  .voices .quote{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(28px,3.4vw,46px);line-height:1.35;
+    max-width:1000px;margin:0 auto;position:relative;
+    color:#f7ecd7;
+  }
+  .voices .who{margin-top:42px;font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:var(--brass)}
+  .voices .who .name{display:block;font-family:var(--display);font-size:22px;color:#fff;font-weight:400;letter-spacing:.05em;margin-bottom:8px;text-transform:none}
+  .voices .stars{margin-top:24px;color:var(--brass);font-size:20px;letter-spacing:6px}
+  .voices .dots{margin-top:48px;display:flex;justify-content:center;gap:10px}
+  .voices .dots button{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .3s var(--ease)}
+  .voices .dots button.active{background:var(--terracotta);width:28px;border-radius:4px}
+
+  /* ============== CTA ============== */
+  .cta{
+    padding:140px 0;
+    position:relative;
+    background-image:url("photos/sunset.webp");
+    background-size:cover;background-position:center;background-attachment:fixed;
+    color:#fff;text-align:center;
+    overflow:hidden;
+  }
+  .cta::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,58,69,.85),rgba(14,58,69,.75))}
+  .cta .container{position:relative;z-index:2}
+  .cta .eyebrow{color:var(--brass)}
+  .cta h2{
+    font-family:var(--display);font-size:clamp(48px,6vw,96px);
+    font-weight:400;line-height:1;letter-spacing:-.005em;
+  }
+  .cta h2 .italic{font-family:var(--serif);font-style:italic;color:#f4d8b0}
+  .cta p{margin-top:24px;font-size:18px;max-width:600px;margin-left:auto;margin-right:auto;opacity:.9}
+  .cta .actions{margin-top:48px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:18px 36px;
+    font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+    border-radius:999px;
+    transition:all .4s var(--ease);
+    cursor:pointer;border:1px solid;
+  }
+  .btn-primary{background:var(--terracotta);color:#fff;border-color:var(--terracotta)}
+  .btn-primary:hover{background:#a85636;border-color:#a85636;transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .btn-ghost:hover{background:#fff;color:var(--teal);border-color:#fff;transform:translateY(-2px)}
+
+  /* ============== FOOTER ============== */
+  footer{background:#0a1e23;color:#cdc4b3;padding:90px 0 30px;position:relative}
+  footer .grid{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:60px;
+  }
+  footer h5{font-family:var(--display);color:#fff;font-size:18px;letter-spacing:.08em;margin-bottom:22px;font-weight:400}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14px}
+  footer ul a{transition:color .25s var(--ease);opacity:.85}
+  footer ul a:hover{color:var(--terracotta);opacity:1}
+  footer .brand-block .crest{
+    width:72px;height:72px;border:1.2px solid rgba(255,255,255,.5);border-radius:50%;
+    display:grid;place-items:center;font-family:var(--display);font-size:24px;color:#fff;
+    margin-bottom:20px;
+  }
+  footer .brand-block .name{font-family:var(--display);font-size:26px;color:#fff;letter-spacing:.04em}
+  footer .brand-block p{margin-top:14px;font-size:14px;line-height:1.7;max-width:320px;opacity:.75}
+  footer .contact-row{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.6}
+  footer .contact-row svg{width:18px;height:18px;flex-shrink:0;margin-top:3px;color:var(--terracotta)}
+  footer .contact-row + .contact-row{margin-top:14px}
+  footer .bottom{
+    margin-top:70px;padding-top:30px;border-top:1px solid rgba(255,255,255,.1);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;opacity:.6;letter-spacing:.08em;flex-wrap:wrap;gap:10px;
+  }
+  footer .socials{display:flex;gap:14px}
+  footer .socials a{
+    width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);
+    display:grid;place-items:center;transition:all .3s var(--ease);
+  }
+  footer .socials a:hover{background:var(--terracotta);border-color:var(--terracotta);color:#fff}
+  footer .socials svg{width:16px;height:16px}
+
+  /* ============== FLOATING WHATSAPP ============== */
+  .floating-wa{
+    position:fixed;bottom:28px;right:28px;z-index:50;
+    width:62px;height:62px;border-radius:50%;
+    background:#25D366;color:#fff;
+    display:grid;place-items:center;
+    box-shadow:0 16px 36px -10px rgba(37,211,102,.6);
+    animation:wa-pulse 2.4s ease-in-out infinite;
+  }
+  .floating-wa svg{width:30px;height:30px}
+  @keyframes wa-pulse{
+    0%,100%{box-shadow:0 16px 36px -10px rgba(37,211,102,.6), 0 0 0 0 rgba(37,211,102,.5)}
+    50%{box-shadow:0 16px 36px -10px rgba(37,211,102,.6), 0 0 0 18px rgba(37,211,102,0)}
+  }
+
+  /* ============== SCROLL REVEAL ============== */
+  .reveal{opacity:0;transform:translateY(50px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal.d1{transition-delay:.15s}
+  .reveal.d2{transition-delay:.3s}
+  .reveal.d3{transition-delay:.45s}
+
+  /* ============== BURGER + MOBILE MENU ============== */
+  .burger{
+    display:none;background:transparent;border:none;cursor:pointer;
+    width:44px;height:44px;padding:10px;
+    flex-direction:column;justify-content:space-between;align-items:center;
+    z-index:101;
+  }
+  .burger span{
+    display:block;width:24px;height:1.6px;background:currentColor;
+    transition:transform .35s var(--ease), opacity .25s var(--ease);
+  }
+  body.menu-open .burger span:nth-child(1){transform:translateY(10px) rotate(45deg)}
+  body.menu-open .burger span:nth-child(2){opacity:0}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-10px) rotate(-45deg)}
+
+  .mobile-menu{
+    position:fixed;inset:0;z-index:99;
+    background:var(--teal);color:#fff;
+    transform:translateY(-100%);
+    transition:transform .55s var(--ease);
+    display:flex;align-items:center;justify-content:center;
+  }
+  body.menu-open .mobile-menu{transform:translateY(0)}
+  body.menu-open{overflow:hidden}
+  .mm-inner{display:flex;flex-direction:column;gap:8px;text-align:center;padding:40px}
+  .mm-link{
+    font-family:var(--display);font-size:38px;line-height:1.2;color:#fff;
+    padding:8px 0;letter-spacing:.01em;
+    opacity:0;transform:translateY(20px);transition:all .5s var(--ease);
+  }
+  body.menu-open .mm-link{opacity:1;transform:translateY(0)}
+  body.menu-open .mm-link:nth-child(1){transition-delay:.15s}
+  body.menu-open .mm-link:nth-child(2){transition-delay:.22s}
+  body.menu-open .mm-link:nth-child(3){transition-delay:.29s}
+  body.menu-open .mm-link:nth-child(4){transition-delay:.36s}
+  body.menu-open .mm-link:nth-child(5){transition-delay:.43s}
+  body.menu-open .mm-link:nth-child(6){transition-delay:.50s}
+  .mm-cta{
+    margin-top:28px;background:var(--terracotta);color:#fff;
+    padding:16px 32px;border-radius:999px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+    align-self:center;
+    opacity:0;transition:all .5s var(--ease) .6s;
+  }
+  body.menu-open .mm-cta{opacity:1}
+  .mm-foot{
+    margin-top:36px;display:flex;flex-direction:column;gap:12px;
+    font-size:14px;letter-spacing:.06em;opacity:.85;
+    opacity:0;transition:all .5s var(--ease) .75s;
+  }
+  body.menu-open .mm-foot{opacity:.85}
+  .mm-foot a{padding:4px}
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width:1024px){
+    .welcome .grid, .experience .grid{grid-template-columns:1fr;gap:60px}
+    .room-grid{grid-template-columns:repeat(2,1fr)}
+    .amenity-grid{grid-template-columns:repeat(2,1fr)}
+    footer .grid{grid-template-columns:1fr 1fr;gap:40px}
+    .book-bar{grid-template-columns:1fr 1fr;gap:0}
+    .book-bar .submit{grid-column:span 2;margin:4px;padding:18px;min-height:60px}
+    .book-field{border-bottom:1px solid var(--line)}
+    .book-field:nth-child(2){border-right:none}
+    .welcome .img-stack{height:480px}
+    .experience .map-stack{height:440px}
+  }
+  @media (max-width:768px){
+    .nav .links{display:none}
+    .burger{display:flex}
+    .nav{padding:14px 18px}
+    .nav .book{display:none}
+    .nav.scrolled{padding:10px 18px}
+    .nav .brand{font-size:18px}
+    .nav .brand .crest{width:36px;height:36px;font-size:12px}
+    .nav .brand small{font-size:8px;letter-spacing:.3em}
+  }
+  @media (max-width:680px){
+    body{font-size:15px}
+    .container{padding:0 20px}
+    .hero{min-height:600px;height:100svh}
+    .hero-content{padding:0 22px 130px}
+    .hero-bottom{padding:0 22px 22px}
+    .hero-eyebrow{font-size:10px;letter-spacing:.3em;margin-bottom:18px}
+    .hero h1{font-size:clamp(44px,11vw,72px);line-height:1}
+    .hero-sub{font-size:15px;margin-top:22px}
+    .hero-meta{gap:10px;margin-top:28px}
+    .hero-meta .pill{padding:10px 16px;font-size:11px;letter-spacing:.1em}
+    .hero-actions{margin-top:24px;gap:12px}
+    .hero-btn{padding:12px 22px;font-size:11px}
+    .scroll-cue{display:none}
+
+    .book-bar{margin:-30px 16px 0;grid-template-columns:1fr 1fr}
+    .book-field{padding:14px 16px}
+    .book-field .val,.book-field input,.book-field select{font-size:16px}
+
+    .welcome, .rooms, .amenities, .experience, .voices, .cta{padding:80px 0}
+    .welcome .grid, .experience .grid{gap:50px}
+    .welcome .img-stack{height:420px}
+    .welcome .img-stack .badge{width:110px;height:110px}
+    .welcome .img-stack .badge .inner{font-size:14px}
+
+    .section-head{margin-bottom:40px;gap:20px}
+    .section-head h2{font-size:clamp(36px,9vw,48px)}
+
+    .room-grid, .amenity-grid{grid-template-columns:1fr}
+    .room .img{height:280px}
+    .amenity{padding:28px 22px}
+
+    .gallery .scroller .item{width:280px;height:360px}
+    .gallery .scroller .item:nth-child(3n){height:380px}
+
+    .experience .map-stack{height:380px}
+    .nearby{grid-template-columns:1fr}
+
+    footer{padding:70px 0 30px}
+    footer .grid{grid-template-columns:1fr;gap:36px}
+    footer .bottom{flex-direction:column;align-items:flex-start;gap:18px}
+
+    .marquee span{font-size:30px;gap:36px}
+    .marquee{gap:36px}
+    .marquee-band{padding:26px 0}
+
+    .voices{padding:90px 0}
+    .voices::before{font-size:200px;top:10px}
+    .voices .quote{font-size:24px}
+
+    .cta{padding:90px 0;background-attachment:scroll}
+    .cta .actions{flex-direction:column;width:100%;padding:0 30px}
+    .cta .actions .btn{justify-content:center}
+
+    .floating-wa{width:54px;height:54px;bottom:18px;right:18px}
+    .floating-wa svg{width:26px;height:26px}
+
+    .mm-link{font-size:30px}
+    .hero-actions{flex-direction:column;align-items:flex-start}
+    .hero-btn{width:100%;justify-content:center}
+  }
+
+  /* iOS safe area + tap highlight */
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .floating-wa{bottom:calc(28px + env(safe-area-inset-bottom))}
+    footer{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
+  }
+  *{-webkit-tap-highlight-color:transparent}
+  button,a{touch-action:manipulation}
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="nav" id="nav">
+  <a href="#top" class="brand">
+    <div class="crest">DI</div>
+    <div>
+      The Dutch Inn
+      <small>GALLE · EST. HERITAGE</small>
+    </div>
+  </a>
+  <div class="links">
+    <a href="#welcome">Story</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#amenities">Stay</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#location">Galle</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a class="book" href="https://www.booking.com/hotel/lk/the-dutch-inn-galle.en-gb.html" target="_blank" rel="noopener">Reserve →</a>
+</nav>
+
+<!-- ============== MOBILE MENU ============== -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-inner">
+    <a href="#welcome" class="mm-link">Story</a>
+    <a href="#rooms" class="mm-link">Rooms</a>
+    <a href="#amenities" class="mm-link">Stay</a>
+    <a href="#gallery" class="mm-link">Gallery</a>
+    <a href="#location" class="mm-link">Galle</a>
+    <a href="#contact" class="mm-link">Contact</a>
+    <a href="https://www.booking.com/hotel/lk/the-dutch-inn-galle.en-gb.html" target="_blank" rel="noopener" class="mm-cta">Reserve →</a>
+    <div class="mm-foot">
+      <a href="tel:+940742779081">074 277 9081</a>
+      <a href="https://wa.me/94773376753" target="_blank">WhatsApp →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============== HERO ============== -->
+<header class="hero" id="top">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide active" style="background-image:url('photos/fb-44.webp')"></div>
+    <div class="hero-slide"        style="background-image:url('photos/fb-39.webp')"></div>
+    <div class="hero-slide"        style="background-image:url('photos/p-02.webp')"></div>
+    <div class="hero-slide"        style="background-image:url('photos/wa-03.webp')"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="dash"></span>A Boutique Heritage Retreat · Galle, Sri Lanka</div>
+    <h1>A pool, a porch,<br/>and the <span class="italic">southern sea.</span></h1>
+    <p class="hero-sub">A boutique heritage inn on D.J Wimalasurendra Mawatha — minutes from Galle Fort. Canopy beds, antique-filled lounges, a turquoise pool, and BBQ evenings under the palms.</p>
+    <div class="hero-meta">
+      <div class="pill">
+        <span class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </span>
+        Boutique · 4 Star
+      </div>
+      <div class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        2 min walk to Galle Fort
+      </div>
+      <div class="pill">From £29 / night</div>
+    </div>
+    <div class="hero-actions">
+      <a href="https://www.booking.com/hotel/lk/the-dutch-inn-galle.en-gb.html" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Reserve a Room →</a>
+      <a href="#gallery" class="hero-btn hero-btn-ghost">View Gallery</a>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="line"></div>
+    </div>
+    <div class="slide-dots" id="slideDots">
+      <button class="active" data-i="0"></button>
+      <button data-i="1"></button>
+      <button data-i="2"></button>
+      <button data-i="3"></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============== BOOKING BAR ============== -->
+<form class="book-bar" onsubmit="window.open(buildBookingUrl(this),'_blank');return false;">
+  <div class="book-field">
+    <label>Arrive</label>
+    <input type="date" name="checkin" id="checkin" />
+  </div>
+  <div class="book-field">
+    <label>Depart</label>
+    <input type="date" name="checkout" id="checkout" />
+  </div>
+  <div class="book-field">
+    <label>Guests</label>
+    <select name="adults">
+      <option value="2">2 Adults</option>
+      <option value="1">1 Adult</option>
+      <option value="3">3 Adults</option>
+      <option value="4">4 Adults</option>
+    </select>
+  </div>
+  <div class="book-field">
+    <label>Rooms</label>
+    <select name="rooms">
+      <option value="1">1 Room</option>
+      <option value="2">2 Rooms</option>
+    </select>
+  </div>
+  <button class="submit" type="submit">Check Availability</button>
+</form>
+
+<!-- ============== WELCOME ============== -->
+<section class="welcome" id="welcome">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="eyebrow reveal"><span class="dash"></span>Our story</div>
+        <h2 class="reveal d1">An inn with a <span class="italic">view of the world.</span></h2>
+        <p class="reveal d2">For three centuries Galle has been a meeting place — of merchants, monsoons, and slow southern evenings. The Dutch Inn is our chapter of that story: a heritage townhouse with louvered shutters and polished teak, a verandah heavy with antique cabinets, and a turquoise pool to disappear into when the day gets too hot.</p>
+        <p class="reveal d2">We are family-run, intimate by design, and committed to the kind of stay that feels less like a hotel and more like staying with a well-travelled friend.</p>
+        <div class="stats reveal d3">
+          <div class="stat"><div class="num" data-count="8">0</div><div class="lbl">Rooms</div></div>
+          <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">Min. to Fort</div></div>
+          <div class="stat"><div class="num" data-count="24">0</div><div class="lbl">Hour care</div></div>
+        </div>
+      </div>
+      <div class="img-stack reveal d1">
+        <div class="main">
+          <image-slot id="welcome-main" placeholder="Hotel facade with pool"
+            src="photos/fb-42.webp"
+            style="width:100%;height:100%"></image-slot>
+        </div>
+        <div class="acc">
+          <image-slot id="welcome-acc" placeholder="Heritage porch / antiques"
+            src="photos/fb-43.webp"
+            style="width:100%;height:100%"></image-slot>
+        </div>
+        <div class="badge">
+          <svg viewBox="0 0 140 140">
+            <defs>
+              <path id="circ" d="M 70,70 m -52,0 a 52,52 0 1,1 104,0 a 52,52 0 1,1 -104,0"/>
+            </defs>
+            <text font-family="Italiana, serif" font-size="11" fill="#fff" letter-spacing="2.4">
+              <textPath href="#circ">SINCE A WHILE · GALLE · CEYLON · SOUTHERN PROVINCE · </textPath>
+            </text>
+          </svg>
+          <div class="inner">Galle<br/><em style="font-family:Cormorant Garamond, serif;font-style:italic;font-size:14px;opacity:.9">est. heritage</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MARQUEE ============== -->
+<div class="marquee-band">
+  <div class="marquee">
+    <span>Galle Fort</span>
+    <span>Turquoise Pool</span>
+    <span>Heritage Verandah</span>
+    <span>BBQ Evenings</span>
+    <span>Stilt Fishermen</span>
+    <span>Galle Fort</span>
+    <span>Turquoise Pool</span>
+    <span>Heritage Verandah</span>
+    <span>BBQ Evenings</span>
+    <span>Stilt Fishermen</span>
+  </div>
+</div>
+
+<!-- ============== ROOMS ============== -->
+<section class="rooms" id="rooms">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="reveal">The <span class="italic">rooms.</span></h2>
+      <p class="right reveal d1">Each room is hand-finished with teakwood louvres, antique brass fittings and crisp linen. Choose a courtyard view for quiet mornings or a fort-side balcony for sunsets over the ramparts.</p>
+    </div>
+    <div class="room-grid">
+      <article class="room reveal">
+        <div class="img">
+          <span class="tag">Most loved</span>
+          <image-slot id="room-1" placeholder="Heritage Canopy Double"
+            src="photos/fb-10.webp"></image-slot>
+        </div>
+        <div class="body">
+          <h3>Heritage Canopy Double</h3>
+          <div class="feat">
+            <span>◆ Queen bed</span>
+            <span>◆ Mosquito canopy</span>
+            <span>◆ Garden view</span>
+          </div>
+          <div class="price-row">
+            <div class="price">
+              <div class="from">From</div>
+              <div class="amt">£29<small>/night</small></div>
+            </div>
+            <div class="arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="room reveal d1">
+        <div class="img">
+          <span class="tag">Family</span>
+          <image-slot id="room-2" placeholder="Family Bunk Room"
+            src="photos/fb-29.webp"></image-slot>
+        </div>
+        <div class="body">
+          <h3>Family Bunk Room</h3>
+          <div class="feat">
+            <span>◆ Double + bunk</span>
+            <span>◆ Sleeps 4</span>
+            <span>◆ Pool side</span>
+          </div>
+          <div class="price-row">
+            <div class="price">
+              <div class="from">From</div>
+              <div class="amt">£42<small>/night</small></div>
+            </div>
+            <div class="arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="room reveal d2">
+        <div class="img">
+          <span class="tag">Pool view</span>
+          <image-slot id="room-3" placeholder="Garden Suite"
+            src="photos/fb-32.webp"></image-slot>
+        </div>
+        <div class="body">
+          <h3>Garden Suite</h3>
+          <div class="feat">
+            <span>◆ King canopy</span>
+            <span>◆ Wooden ceiling</span>
+            <span>◆ Verandah</span>
+          </div>
+          <div class="price-row">
+            <div class="price">
+              <div class="from">From</div>
+              <div class="amt">£55<small>/night</small></div>
+            </div>
+            <div class="arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== AMENITIES ============== -->
+<section class="amenities" id="amenities">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="reveal">Small comforts, <br/><span class="italic">carefully kept.</span></h2>
+      <p class="right reveal d1">We don't promise marble lobbies. We promise hot ginger tea at 6am, a tuk-tuk waiting at dawn, and a host who knows where the best kottu is served — at the right price.</p>
+    </div>
+    <div class="amenity-grid">
+      <div class="amenity reveal">
+        <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M12 30h40v22H12z"/><path d="M16 30v-8a16 16 0 0132 0v8"/><path d="M22 38h6M36 38h6"/>
+        </svg>
+        <h4>Free Wi-Fi & Workspace</h4>
+        <p>Fibre-line internet across every room and the courtyard, with a quiet teak desk for those still-working-on-holiday mornings.</p>
+      </div>
+      <div class="amenity reveal d1">
+        <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M8 44c8-8 16-8 24 0s16 8 24 0"/><path d="M8 36c8-8 16-8 24 0s16 8 24 0"/><path d="M8 52c8-8 16-8 24 0s16 8 24 0"/>
+        </svg>
+        <h4>Turquoise Swimming Pool</h4>
+        <p>An open-air pool set against the heritage facade — sun-warm by day, lantern-lit by night. Towels and king-coconuts always within reach.</p>
+      </div>
+      <div class="amenity reveal d2">
+        <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M20 14h24l-4 12H24z"/><path d="M22 26v22M42 26v22M14 48h36"/>
+        </svg>
+        <h4>Ceylon Breakfast</h4>
+        <p>Hoppers with seeni sambol, fresh king-coconut, papaya and a pot of Ceylon tea — served until you've had enough.</p>
+      </div>
+      <div class="amenity reveal d3">
+        <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="32" cy="32" r="20"/><path d="M32 12v8M32 44v8M12 32h8M44 32h8M18 18l5.5 5.5M40.5 40.5L46 46M18 46l5.5-5.5M40.5 23.5L46 18"/>
+        </svg>
+        <h4>Concierge by Heart</h4>
+        <p>Tuk-tuks, whale-watching, train tickets to Mirissa, Sinharaja jeep tours — arranged, vetted, and at fair price.</p>
+      </div>
+      <div class="amenity reveal">
+        <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M14 50V32l18-14 18 14v18"/><path d="M14 50h36M26 50V38h12v12"/>
+        </svg>
+        <h4>Heritage Building</h4>
+        <p>A century-old townhouse, lovingly restored. Original tile floors, teak doors, and the kind of shutters that make a verandah a verandah.</p>
+      </div>
+      <div class="amenity reveal d1">
+        <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="32" cy="32" r="22"/><path d="M22 32a10 12 0 1020 0 10 12 0 10-20 0"/><path d="M10 32h44M32 10v44"/>
+        </svg>
+        <h4>Airport Transfers</h4>
+        <p>Pre-arranged car from Bandaranaike (CMB) or Mattala — fixed price, English-speaking driver, cold towels on arrival.</p>
+      </div>
+      <div class="amenity reveal d2">
+        <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4">
+          <rect x="14" y="20" width="36" height="28" rx="2"/><path d="M14 28h36M22 20v-6M42 20v-6"/>
+        </svg>
+        <h4>Free Cancellation</h4>
+        <p>Most rates are fully refundable up to 48 hours before arrival. Travel plans change — we understand.</p>
+      </div>
+      <div class="amenity reveal d3">
+        <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M32 14c-6 0-10 4-10 10v4h20v-4c0-6-4-10-10-10z"/><path d="M16 30h32l-4 22H20z"/><path d="M24 36v10M32 36v10M40 36v10"/>
+        </svg>
+        <h4>BBQ, Carrom & Shisha Nights</h4>
+        <p>Pool-side BBQ evenings, a carrom board kept ready on the verandah, and a shisha lounge for the slow hours after dinner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GALLERY ============== -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="reveal">A look <span class="italic">around.</span></h2>
+      <p class="right reveal d1">Pause the scroll on any frame. Photos are placeholders — drop your own from the camera roll and they'll save in place.</p>
+    </div>
+  </div>
+  <div class="scroller">
+    <div class="item"><image-slot id="g1" src="photos/fb-44.webp"></image-slot><div class="cap">The pool in the afternoon</div></div>
+    <div class="item"><image-slot id="g2" src="photos/fb-31.webp"></image-slot><div class="cap">A welcome on every pillow</div></div>
+    <div class="item"><image-slot id="g3" src="photos/p-02.webp"></image-slot><div class="cap">After-dark, pool-side</div></div>
+    <div class="item"><image-slot id="g4" src="photos/fb-43.webp"></image-slot><div class="cap">The antique verandah</div></div>
+    <div class="item"><image-slot id="g5" src="photos/fb-15.webp"></image-slot><div class="cap">Cool linen mornings</div></div>
+    <div class="item"><image-slot id="g6" src="photos/wa-03.webp"></image-slot><div class="cap">BBQ evenings</div></div>
+    <div class="item"><image-slot id="g7" src="photos/fb-39.webp"></image-slot><div class="cap">Home for the night</div></div>
+    <div class="item"><image-slot id="g8" src="photos/fb-18.webp"></image-slot><div class="cap">Heritage details</div></div>
+    <div class="item"><image-slot id="g9" src="photos/shisha.webp"></image-slot><div class="cap">The shisha hour</div></div>
+    <div class="item"><image-slot id="g10" src="photos/fb-46.webp"></image-slot><div class="cap">Always a pool day</div></div>
+    <!-- duplicates for seamless loop -->
+    <div class="item"><image-slot id="g1b" src="photos/fb-44.webp"></image-slot></div>
+    <div class="item"><image-slot id="g2b" src="photos/fb-31.webp"></image-slot></div>
+    <div class="item"><image-slot id="g3b" src="photos/p-02.webp"></image-slot></div>
+    <div class="item"><image-slot id="g4b" src="photos/fb-43.webp"></image-slot></div>
+    <div class="item"><image-slot id="g5b" src="photos/fb-15.webp"></image-slot></div>
+    <div class="item"><image-slot id="g6b" src="photos/wa-03.webp"></image-slot></div>
+    <div class="item"><image-slot id="g7b" src="photos/fb-39.webp"></image-slot></div>
+    <div class="item"><image-slot id="g8b" src="photos/fb-18.webp"></image-slot></div>
+    <div class="item"><image-slot id="g9b" src="photos/shisha.webp"></image-slot></div>
+    <div class="item"><image-slot id="g10b" src="photos/fb-46.webp"></image-slot></div>
+  </div>
+</section>
+
+<!-- ============== EXPERIENCE / GALLE ============== -->
+<section class="experience" id="location">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="eyebrow reveal"><span class="dash"></span>The neighbourhood</div>
+        <h2 class="reveal d1">Galle, with the <span class="italic">door wide open.</span></h2>
+        <p class="lead reveal d2">A UNESCO-listed Dutch fort, a working harbour, jungle-fringed beaches an hour each way. Most of what brought you to the south is walkable from our front step — and what isn't, our tuk-tuk friends know best.</p>
+        <div class="nearby">
+          <div class="item reveal d2"><span class="name">Galle Fort Ramparts</span><span class="dist">2 min · walk</span></div>
+          <div class="item reveal d2"><span class="name">Galle Lighthouse</span><span class="dist">5 min · walk</span></div>
+          <div class="item reveal d2"><span class="name">Dutch Reformed Church</span><span class="dist">6 min · walk</span></div>
+          <div class="item reveal d2"><span class="name">Jungle Beach</span><span class="dist">12 min · tuk</span></div>
+          <div class="item reveal d3"><span class="name">Galle Cricket Stadium</span><span class="dist">4 min · walk</span></div>
+          <div class="item reveal d3"><span class="name">Unawatuna Beach</span><span class="dist">14 min · tuk</span></div>
+          <div class="item reveal d3"><span class="name">Mirissa Whale Watching</span><span class="dist">45 min · car</span></div>
+          <div class="item reveal d3"><span class="name">Bandaranaike Airport</span><span class="dist">2 h 20 · car</span></div>
+        </div>
+      </div>
+      <div class="map-stack reveal d1">
+        <div class="photo">
+          <image-slot id="loc-photo" placeholder="Stilt fishermen of Galle"
+            src="photos/dalawella-fishing.webp"
+            style="width:100%;height:100%"></image-slot>
+        </div>
+        <div class="map">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=80.2120%2C6.0220%2C80.2240%2C6.0320&layer=mapnik&marker=6.0270%2C80.2180"
+            loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VOICES ============== -->
+<section class="voices">
+  <div class="container">
+    <div id="quoteBox">
+      <p class="quote">A quiet, kindly house just outside the Fort gates. We came for one night and stayed for four. The breakfast hoppers alone are worth the trip — but it's the welcome that brings you back.</p>
+      <div class="stars">★★★★★</div>
+      <div class="who"><span class="name">Helena & Tom</span>Guests · United Kingdom</div>
+    </div>
+    <div class="dots" id="voiceDots">
+      <button class="active" data-i="0"></button>
+      <button data-i="1"></button>
+      <button data-i="2"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="cta">
+  <div class="container">
+    <div class="eyebrow"><span class="dash" style="background:var(--brass)"></span>Reserve your stay</div>
+    <h2>Stay a while.<br/><span class="italic">Slow down, here.</span></h2>
+    <p>Best rates are guaranteed when you book direct — and we throw in a welcome king-coconut on the verandah.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="https://www.booking.com/hotel/lk/the-dutch-inn-galle.en-gb.html" target="_blank" rel="noopener">
+        Book on Booking.com
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="https://wa.me/94773376753" target="_blank" rel="noopener">
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer id="contact">
+  <div class="container">
+    <div class="grid">
+      <div class="brand-block">
+        <div class="crest">DI</div>
+        <div class="name">The Dutch Inn</div>
+        <p>A family-run boutique inn just outside the gates of Galle Fort — heritage rooms, slow mornings, and the southern sea two minutes away.</p>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span>#130, D.J Wimalasurendra Mawatha,<br/>Galle 80000, Sri Lanka</span>
+        </div>
+      </div>
+      <div>
+        <h5>Reach us</h5>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:+940742779081">074 277 9081</a>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.2-1.1a7.93 7.93 0 003.85 1h.01a7.95 7.95 0 005.54-13.58zm-5.55 12.2h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.59 6.59 0 1112.21-3.5 6.6 6.6 0 01-6.6 6.58z"/></svg>
+          <a href="https://wa.me/94773376753" target="_blank">+94 77 337 6753 (WhatsApp)</a>
+        </div>
+      </div>
+      <div>
+        <h5>Booking</h5>
+        <ul>
+          <li><a href="https://www.booking.com/hotel/lk/the-dutch-inn-galle.en-gb.html" target="_blank" rel="noopener">Booking.com listing →</a></li>
+          <li><a href="#rooms">Browse rooms</a></li>
+          <li><a href="#welcome">About us</a></li>
+          <li><a href="#location">Find us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <div>© <span id="yr"></span> The Dutch Inn · Galle, Sri Lanka. Crafted with care.</div>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.6l.4-4h-4V6c0-1 .3-1.5 1.5-1.5H18V0h-3.7C10.7 0 9 1.8 9 5v3z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="Youtube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7s-.2-1.6-.9-2.3c-.8-.9-1.7-.9-2.1-1C16.9 3.5 12 3.5 12 3.5s-4.9 0-8 .2c-.4 0-1.3 0-2.1 1C1.2 5.4 1 7 1 7S.8 8.9.8 10.7v1.6c0 1.9.2 3.7.2 3.7s.2 1.6.9 2.3c.8.9 1.9.9 2.4 1 1.7.2 7.7.2 7.7.2s4.9 0 8-.2c.4 0 1.3 0 2.1-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.7v-1.6C23.2 8.9 23 7 23 7zM9.7 14.6V8.4l6.3 3.1-6.3 3.1z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="floating-wa" href="https://wa.me/94773376753" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.2-1.1a7.93 7.93 0 003.85 1h.01a7.95 7.95 0 005.54-13.58zm-5.55 12.2h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.59 6.59 0 1112.21-3.5 6.6 6.6 0 01-6.6 6.58z"/></svg>
+</a>
+
+<script>
+  /* ---------- NAV scroll ---------- */
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 80) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- Hero slideshow ---------- */
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('#slideDots button');
+  let slideI = 0;
+  function goSlide(n){
+    slides[slideI].classList.remove('active');
+    dots[slideI].classList.remove('active');
+    slideI = (n + slides.length) % slides.length;
+    slides[slideI].classList.add('active');
+    dots[slideI].classList.add('active');
+  }
+  setInterval(() => goSlide(slideI + 1), 6500);
+  dots.forEach(d => d.addEventListener('click', e => goSlide(+e.target.dataset.i)));
+
+  /* ---------- Reveal on scroll ---------- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        // counters
+        if (e.target.classList.contains('num') || e.target.querySelector('[data-count]')) {
+          const els = e.target.matches('[data-count]') ? [e.target] : e.target.querySelectorAll('[data-count]');
+          els.forEach(el => {
+            const target = +el.dataset.count;
+            const dur = 1400;
+            const start = performance.now();
+            const tick = (t) => {
+              const p = Math.min(1, (t - start) / dur);
+              const eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(eased * target);
+              if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          });
+        }
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.stats').forEach(el => io.observe(el));
+
+  /* ---------- Booking bar defaults ---------- */
+  (function(){
+    const today = new Date();
+    const tomorrow = new Date(today.getTime() + 86400000);
+    const fmt = d => d.toISOString().slice(0,10);
+    document.getElementById('checkin').value = fmt(today);
+    document.getElementById('checkout').value = fmt(tomorrow);
+  })();
+  window.buildBookingUrl = function(form){
+    const fd = new FormData(form);
+    const u = new URL('https://www.booking.com/hotel/lk/the-dutch-inn-galle.en-gb.html');
+    u.searchParams.set('checkin', fd.get('checkin'));
+    u.searchParams.set('checkout', fd.get('checkout'));
+    u.searchParams.set('group_adults', fd.get('adults'));
+    u.searchParams.set('no_rooms', fd.get('rooms'));
+    u.searchParams.set('group_children', '0');
+    return u.toString();
+  };
+
+  /* ---------- Testimonials ---------- */
+  const reviews = [
+    {q:"A quiet, kindly house just outside the Fort gates. We came for one night and stayed for four. The breakfast hoppers alone are worth the trip — but it's the welcome that brings you back.", who:"Helena & Tom", where:"Guests · United Kingdom"},
+    {q:"You're two minutes from the ramparts and a world away from the noise. The host arranged everything — train tickets, whale-watching, a driver to Yala — at honest prices. Difficult to leave.", who:"Mathieu Laurent", where:"Guests · France"},
+    {q:"Family-run in the best sense. Our kids were fed papaya at 6am and ran barefoot in the courtyard while we read on the verandah. This is the Galle we'd hoped to find.", who:"The Patel Family", where:"Guests · Singapore"},
+  ];
+  const qBox = document.getElementById('quoteBox');
+  const qDots = document.querySelectorAll('#voiceDots button');
+  let qI = 0;
+  function setReview(i){
+    qI = i;
+    qBox.style.opacity = '0';
+    setTimeout(() => {
+      qBox.querySelector('.quote').textContent = reviews[i].q;
+      qBox.querySelector('.who .name').textContent = reviews[i].who;
+      qBox.querySelector('.who').lastChild.textContent = reviews[i].where;
+      qBox.style.opacity = '1';
+      qDots.forEach((d,j) => d.classList.toggle('active', j === i));
+    }, 350);
+  }
+  qBox.style.transition = 'opacity .35s ease';
+  qDots.forEach(d => d.addEventListener('click', e => setReview(+e.target.dataset.i)));
+  setInterval(() => setReview((qI + 1) % reviews.length), 8000);
+
+  /* ---------- Hero touch swipe ---------- */
+  (function(){
+    const hero = document.querySelector('.hero');
+    let tx = 0;
+    hero.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+    hero.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) goSlide(slideI + (dx < 0 ? 1 : -1));
+    }, {passive:true});
+  })();
+
+  /* ---------- Gallery touch pause ---------- */
+  (function(){
+    const scroller = document.querySelector('.gallery .scroller');
+    if (!scroller) return;
+    scroller.addEventListener('touchstart', () => scroller.classList.add('paused'), {passive:true});
+    scroller.addEventListener('touchend', () => scroller.classList.remove('paused'), {passive:true});
+  })();
+
+  /* ---------- Mobile menu ---------- */
+  const burger = document.getElementById('burger');
+  const mmLinks = document.querySelectorAll('.mm-link');
+  burger.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  mmLinks.forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+
+  /* ---------- Year ---------- */
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
